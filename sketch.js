@@ -9,9 +9,10 @@ var stand1,stand2;
 var ball;
 var slingShot;
 var polygon_img;
-function preload(){
-  polygon_img=loadImage("polygon.png");
+function preload(){ 
+  polygon_img=loadImage("polygon.png"); 
 }
+
 function setup() {
   createCanvas(900,400);
   engine = Engine.create();
@@ -42,6 +43,26 @@ function setup() {
   block15 = new Block(420,195,30,40);
   //parte superior
   block16 = new Block(390,155,30,40);
+
+  //conjunto 2 para la segunda posición //nivel uno 
+  blocks1 = new Block(640,175,30,40); 
+  blocks2 = new Block(670,175,30,40); 
+  blocks3 = new Block(700,175,30,40); 
+  blocks4 = new Block(730,175,30,40); 
+  blocks5 = new Block(760,175,30,40); 
+
+  //nivel dos
+ blocks6 = new Block(670,135,30,40); 
+  blocks7 = new Block(700,135,30,40); 
+  blocks8 = new Block(730,135,30,40); 
+
+  //parte superior
+  blocks9 = new Block(700,95,30,40); 
+
+  //soporte de la pelota con la resortera 
+  ball = Bodies.circle(50,200,20); World.add(world,ball); 
+  slingShot = new Slingshot(this.ball,{x:100,y:200}); 
+
 
   polygon =new Polygon(870,120,150, -PI/7);
   
@@ -84,12 +105,11 @@ function draw() {
 }
 
 
-function mouseDragged(){
-      Matter.Body.setPosition(polygon.body, {x: mouseX , y: mouseY});
-}
+function mouseDragged(){ 
+  Matter.Body.setPosition(this.ball,{x:mouseX,y:mouseY}); 
+} 
 
 
-function mouseReleased(){
-  slingshot.fly();
-  gameState = "launched";
-}
+function mouseReleased(){ 
+  slingShot.fly();
+ }
